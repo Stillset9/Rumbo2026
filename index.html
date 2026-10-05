@@ -225,6 +225,14 @@
   .deptos-count b{font-size:3.2rem;font-weight:800;color:var(--azul-800);line-height:1}
   @media (max-width:860px){.deptos-wrap{grid-template-columns:1fr;gap:1.5rem}}
 
+  /* Media */
+  .media-card{max-width:860px;background:#fff;border:1px solid var(--borde);border-radius:var(--radio);overflow:hidden;box-shadow:var(--sombra)}
+  .media-card video{display:block;width:100%;height:auto;background:#071f42}
+  .media-card figcaption{padding:1.35rem 1.5rem 1.5rem}
+  .media-name{margin:0 0 .25rem;font-size:1.35rem;font-weight:800;color:var(--azul-900)}
+  .media-ig{margin:0;font-weight:600}
+  .media-disclaimer{margin:1rem 0 0;padding:1rem 1.1rem;background:var(--celeste-50);border:1px solid var(--borde);border-radius:12px;color:var(--tinta-suave);font-size:.95rem}
+
   /* FAQ */
   .faq{max-width:860px;display:grid;gap:.8rem}
   .faq-item{background:#fff;border:1px solid var(--borde);border-radius:14px;overflow:hidden}
@@ -287,6 +295,7 @@
         <li><a href="#modulos">Módulos</a></li>
         <li><a href="#inscripcion">Inscripción</a></li>
         <li><a href="#faq">Preguntas</a></li>
+        <li><a href="#media">Media</a></li>
         <li><a href="#contacto">Contacto</a></li>
         <li><a class="nav-cta" href="http://agenda.utu.edu.uy/" target="_blank" rel="noopener">Agendarme</a></li>
       </ul>
@@ -644,6 +653,27 @@
         <div class="faq-a" id="faq7" role="region" aria-labelledby="faq7-b" hidden><p>Es una propuesta de la ANEP, a cargo de la Dirección General de Educación Técnico Profesional (DGETP-UTU, antes CETP-UTU). Fue creada en 2010.</p></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- MEDIA -->
+<section id="media" aria-labelledby="media-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Media</span>
+      <h2 id="media-title">Media</h2>
+    </div>
+    <figure class="media-card">
+      <video controls playsinline preload="metadata" width="848" height="480" aria-label="Video de Catalina Díaz">
+        <source src="media/catalina-diaz.mp4" type="video/mp4">
+        Tu navegador no puede reproducir este video.
+      </video>
+      <figcaption>
+        <p class="media-name">Catalina Díaz</p>
+        <p class="media-ig">Instagram: <a href="https://www.instagram.com/Sky_rubiii/" target="_blank" rel="noopener">@Sky_rubiii<span class="sr-only"> (abre en una pestaña nueva)</span></a></p>
+        <p class="media-disclaimer">Este video es público. Catalina Díaz, su autora, autorizó su publicación en este sitio. El prototipo no es autor del material y no se responsabiliza por su contenido, por las opiniones que expresa ni por el uso que otras personas hagan de él. La publicación se limita a mostrarlo con el permiso de quien lo creó.</p>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
