@@ -8,12 +8,14 @@
 <meta name="theme-color" content="#0b3a75">
 <script>
 (function(){
-  var t;
-  try{t=localStorage.getItem('rumbo-tema');}catch(e){}
-  if(t!=='light'&&t!=='dark'){
-    t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
-  }
-  document.documentElement.setAttribute('data-theme',t);
+  var pref;
+  try{pref=localStorage.getItem('rumbo-tema');}catch(e){}
+  if(pref!=='light'&&pref!=='dark'&&pref!=='auto') pref='auto';
+  var theme=pref==='auto'
+    ?(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')
+    :pref;
+  document.documentElement.setAttribute('data-theme-pref',pref);
+  document.documentElement.setAttribute('data-theme',theme);
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,11 +81,13 @@
   .nav .nav-cta{background:var(--azul-800);color:#fff;margin-left:.35rem}
   .nav .nav-cta:hover{background:var(--azul-900);color:#fff}
   .menu-toggle{display:none;background:none;border:2px solid var(--borde);border-radius:12px;padding:.45rem;cursor:pointer;color:var(--titulo)}
-  .theme-switch{display:inline-flex;align-items:center;gap:.4rem;flex:none;background:none;border:0;padding:.2rem;cursor:pointer;color:var(--tinta);font:inherit;font-weight:700;font-size:.78rem}
-  .theme-switch-track{position:relative;width:46px;height:26px;border-radius:999px;background:var(--celeste-200);border:2px solid var(--azul-700);flex:none}
-  .theme-switch-thumb{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--azul-800);transition:transform .2s ease}
-  html[data-theme="dark"] .theme-switch-thumb{transform:translateX(20px);background:var(--sol-300)}
-  html[data-theme="dark"] .theme-switch-track{background:#16385c;border-color:var(--sol-500)}
+  .theme-btn{display:inline-grid;place-items:center;width:42px;height:42px;flex:none;margin-left:.15rem;border-radius:12px;border:2px solid var(--azul-700);background:var(--superficie);color:var(--azul-800);cursor:pointer}
+  .theme-btn:hover{background:var(--celeste-100);color:var(--azul-900)}
+  .theme-btn svg{display:none;width:22px;height:22px}
+  html[data-theme-pref="light"] .theme-btn .icon-sun,
+  html[data-theme-pref="dark"] .theme-btn .icon-moon,
+  html[data-theme-pref="auto"] .theme-btn .icon-auto,
+  html:not([data-theme-pref]) .theme-btn .icon-auto{display:block}
   .menu-toggle svg{width:26px;height:26px}
   @media (max-width:960px){
     .menu-toggle{display:inline-flex}
@@ -295,9 +299,9 @@
     color-scheme:dark;
     --blanco:#0c1524;
     --superficie:#162236;
-    --titulo:#e8f2fc;
-    --tinta:#e4edf7;
-    --tinta-suave:#b7c6da;
+    --titulo:#ffffff;
+    --tinta:#f4f8fd;
+    --tinta-suave:#d5e2f0;
     --borde:#2c4462;
     --celeste-50:#101e32;
     --celeste-100:#17304c;
@@ -308,13 +312,33 @@
     --sol-100:#3a3014;
     --sombra:0 10px 30px -12px rgba(0,0,0,.55);
   }
+  html[data-theme="dark"] .site-header{background:#0b1424;border-bottom-color:#3d5a7a}
+  html[data-theme="dark"] .brand,
+  html[data-theme="dark"] .nav a,
+  html[data-theme="dark"] .menu-toggle{color:#ffffff}
+  html[data-theme="dark"] .brand small{color:#e7f1fb}
+  html[data-theme="dark"] .nav a:hover,
+  html[data-theme="dark"] .nav a.active{background:#243956;color:#ffffff}
+  html[data-theme="dark"] .theme-btn{background:#17304c;border-color:#d6e6f8;color:#ffe27a}
+  html[data-theme="dark"] .theme-btn:hover{background:#23486e;color:#fff4c2}
+  html[data-theme="dark"] .hero{background:
+      radial-gradient(900px 420px at 88% -20%,rgba(255,216,92,.22),transparent 58%),
+      linear-gradient(135deg,#06101e 0%,#0b2f5e 52%,#0a3f78 100%)}
+  html[data-theme="dark"] .hero h1,
+  html[data-theme="dark"] .hero .eyebrow{color:#ffffff}
+  html[data-theme="dark"] .hero h1 mark{color:#ffe27a}
+  html[data-theme="dark"] .hero .lead{color:#f7fbff}
+  html[data-theme="dark"] .hero .hero-note{color:#e4eef8}
   html[data-theme="dark"] .bg-azul{background:#081428;box-shadow:inset 0 0 0 1px #1e3554}
+  html[data-theme="dark"] .bg-azul h2,
+  html[data-theme="dark"] .bg-azul h3,
+  html[data-theme="dark"] .tl-extra strong{color:#ffffff}
   html[data-theme="dark"] .pill.pres{color:#e8f4ff}
   html[data-theme="dark"] .callout,
   html[data-theme="dark"] .callout svg,
   html[data-theme="dark"] .done-msg{color:#f6e2a4}
   html[data-theme="dark"] .deptos-count b,
-  html[data-theme="dark"] .kicker{color:#9ec8f8}
+  html[data-theme="dark"] .kicker{color:#d7e8ff}
   html[data-theme="dark"] .bg-azul .kicker{color:var(--sol-300)}
   html[data-theme="dark"] .comp.tic{border-color:#6d5824}
   html[data-theme="light"]{color-scheme:light}
@@ -333,9 +357,6 @@
       <span>Rumbo<small>Educación Media Básica</small></span>
     </a>
     <div class="header-end">
-    <button class="theme-switch" id="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Activar tema oscuro">
-      <span class="theme-switch-track" aria-hidden="true"><span class="theme-switch-thumb"></span></span>
-    </button>
     <button class="menu-toggle" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
@@ -352,6 +373,11 @@
         <li><a class="nav-cta" href="http://agenda.utu.edu.uy/" target="_blank" rel="noopener">Agendarme</a></li>
       </ul>
     </nav>
+    <button class="theme-btn" id="theme-switch" type="button" aria-label="Tema automático. Cambiar a claro" title="Automático">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/></svg>
+      <svg class="icon-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+    </button>
     </div>
   </div>
 </header>
@@ -800,21 +826,39 @@
 
 <script>
 (function(){
-  // Tema claro / oscuro
+  // Tema claro / oscuro / automático
   var themeBtn=document.getElementById('theme-switch');
   var themeMeta=document.querySelector('meta[name="theme-color"]');
-  function applyTheme(theme){
-    var dark=theme==='dark';
-    document.documentElement.setAttribute('data-theme',theme);
-    themeBtn.setAttribute('aria-checked',dark?'true':'false');
-    themeBtn.setAttribute('aria-label',dark?'Activar tema claro':'Activar tema oscuro');
-    if(themeMeta)themeMeta.setAttribute('content',dark?'#0c1524':'#0b3a75');
-    try{localStorage.setItem('rumbo-tema',theme);}catch(e){}
+  var themeOrder=['light','dark','auto'];
+  var themeCopy={
+    light:{label:'Tema claro. Cambiar a oscuro',title:'Claro'},
+    dark:{label:'Tema oscuro. Cambiar a automático',title:'Oscuro'},
+    auto:{label:'Tema automático. Cambiar a claro',title:'Automático'}
+  };
+  function systemDark(){
+    return !!(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);
   }
-  applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light');
+  function applyPref(pref){
+    if(pref!=='light'&&pref!=='dark'&&pref!=='auto') pref='auto';
+    var theme=pref==='auto'?(systemDark()?'dark':'light'):pref;
+    document.documentElement.setAttribute('data-theme-pref',pref);
+    document.documentElement.setAttribute('data-theme',theme);
+    themeBtn.setAttribute('aria-label',themeCopy[pref].label);
+    themeBtn.setAttribute('title',themeCopy[pref].title);
+    if(themeMeta)themeMeta.setAttribute('content',theme==='dark'?'#0c1524':'#0b3a75');
+    try{localStorage.setItem('rumbo-tema',pref);}catch(e){}
+  }
+  applyPref(document.documentElement.getAttribute('data-theme-pref')||'auto');
   themeBtn.addEventListener('click',function(){
-    applyTheme(themeBtn.getAttribute('aria-checked')==='true'?'light':'dark');
+    var cur=document.documentElement.getAttribute('data-theme-pref')||'auto';
+    var i=themeOrder.indexOf(cur);
+    applyPref(themeOrder[(i+1)%themeOrder.length]);
   });
+  if(window.matchMedia){
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){
+      if(document.documentElement.getAttribute('data-theme-pref')==='auto') applyPref('auto');
+    });
+  }
 
   // Menú móvil
   var toggle=document.querySelector('.menu-toggle'), nav=document.getElementById('nav');
