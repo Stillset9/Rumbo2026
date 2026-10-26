@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rumbo · Terminá la Educación Media Básica (prototipo informativo)</title>
+<title>“Rumbo” · Terminá la Educación Media Básica (prototipo informativo)</title>
 <meta name="description" content="Información sobre Rumbo, la propuesta de ANEP / DGETP-UTU para que jóvenes y adultos terminen la Educación Media Básica en Uruguay. Prototipo informativo no oficial.">
-<meta name="theme-color" content="#10284a">
+<meta name="theme-color" content="#c45c48">
 <script>
 (function(){
   var pref;
@@ -17,7 +17,7 @@
   document.documentElement.setAttribute('data-theme-pref',pref);
   document.documentElement.setAttribute('data-theme',theme);
   var meta=document.querySelector('meta[name="theme-color"]');
-  if(meta) meta.setAttribute('content', theme==='dark'?'#0c121c':'#10284a');
+  if(meta) meta.setAttribute('content', theme==='dark'?'#1a0f10':'#c45c48');
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,34 +31,34 @@
   --muted:#3c4b61;
   --paper:#f3efe6;
   --surface:#fffdf9;
-  --band:#e7f1f8;
+  --band:#ffe8e1;
   --line:#e0d6c6;
   --line-strong:#cfc3ae;
-  --link:#0c4e90;
-  --link-hover:#083668;
-  --kicker:#0c4e90;
-  --icon:#0c4e90;
-  --icon-bg:#e5f1fb;
-  --navy:#10284a;
-  --navy-mid:#16325c;
-  --navy-deep:#081628;
+  --link:#b84332;
+  --link-hover:#8f2f22;
+  --kicker:#c45c48;
+  --icon:#c45c48;
+  --icon-bg:#ffe0d6;
+  --navy:#c45c48;
+  --navy-mid:#d46a55;
+  --navy-deep:#7a2e24;
   --gold:#e9ae2a;
   --gold-2:#f6c453;
   --gold-ink:#1b2838;
-  --on-navy:#f4f7fb;
-  --on-navy-soft:#d5e2f2;
+  --on-navy:#fff7f4;
+  --on-navy-soft:#ffd5cb;
   --callout-bg:#fff5d8;
   --callout-ink:#3e2d08;
   --callout-line:#e2b340;
   --tic-bg:#fff6df;
   --tic-line:#ead59a;
   --ok:#0d6844;
-  --shadow:0 18px 40px -28px rgba(16,40,74,.55);
-  --focus:#0c4e90;
-  --header-bg:#10284a;
-  --step-bg:#10284a;
+  --shadow:0 18px 40px -28px rgba(196,92,72,.55);
+  --focus:#c45c48;
+  --header-bg:#c45c48;
+  --step-bg:#c45c48;
   --step-fg:#ffffff;
-  --badge-bg:#10284a;
+  --badge-bg:#c45c48;
   --badge-fg:#ffffff;
   --max:1120px;
   --header-h:4.75rem;
@@ -67,18 +67,18 @@
 html[data-theme="dark"]{
   color-scheme:dark;
   --ink:#f3f6fb;
-  --muted:#c9d5e6;
-  --paper:#0c121c;
-  --surface:#1a2738;
-  --band:#101a2a;
-  --line:#31445f;
-  --line-strong:#446084;
-  --link:#9ec7f8;
-  --link-hover:#d6e7ff;
-  --kicker:#9ec7f8;
-  --icon:#b9d7fb;
-  --icon-bg:#1c334c;
-  --navy-deep:#070f1c;
+  --muted:#e8cfc8;
+  --paper:#1a0f10;
+  --surface:#2a1816;
+  --band:#2c1614;
+  --line:#5a3a34;
+  --line-strong:#7a5248;
+  --link:#ffb3a3;
+  --link-hover:#ffd4cb;
+  --kicker:#ffb3a3;
+  --icon:#ffb3a3;
+  --icon-bg:#3d221e;
+  --navy-deep:#140a09;
   --callout-bg:#3a3016;
   --callout-ink:#f8e7b4;
   --callout-line:#e2b340;
@@ -87,10 +87,10 @@ html[data-theme="dark"]{
   --ok:#8ddeb8;
   --shadow:0 18px 40px -24px rgba(0,0,0,.7);
   --focus:#f6c453;
-  --header-bg:#0b1526;
-  --step-bg:#1f5fa8;
+  --header-bg:#8f3a30;
+  --step-bg:#e07864;
   --step-fg:#ffffff;
-  --badge-bg:#2f6298;
+  --badge-bg:#d46a55;
   --badge-fg:#ffffff;
 }
 html[data-theme="light"]{color-scheme:light}
@@ -103,7 +103,7 @@ body{
   line-height:1.65;
   color:var(--ink);
   background:
-    radial-gradient(1100px 420px at 100% -180px,rgba(12,78,144,.06),transparent 55%),
+    radial-gradient(1100px 420px at 100% -180px,rgba(196,92,72,.06),transparent 55%),
     var(--paper);
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
@@ -189,7 +189,7 @@ html[data-theme-pref="light"] .theme-btn .icon-sun,
 html[data-theme-pref="dark"] .theme-btn .icon-moon,
 html[data-theme-pref="auto"] .theme-btn .icon-auto,
 html:not([data-theme-pref]) .theme-btn .icon-auto{display:block}
-.nav{display:none;position:absolute;left:0;right:0;top:100%;background:#0c203c;border-bottom:1px solid rgba(255,255,255,.12);box-shadow:0 18px 40px rgba(0,0,0,.28);max-height:calc(100dvh - var(--header-h));overflow:auto}
+.nav{display:none;position:absolute;left:0;right:0;top:100%;background:#9a3f34;border-bottom:1px solid rgba(255,255,255,.12);box-shadow:0 18px 40px rgba(0,0,0,.28);max-height:calc(100dvh - var(--header-h));overflow:auto}
 .nav.open{display:block}
 .nav ul{list-style:none;margin:0;padding:.75rem 1rem 1rem;display:flex;flex-direction:column;gap:.25rem}
 .nav a{
@@ -373,7 +373,7 @@ html[data-theme="dark"] .bg-azul{background:radial-gradient(800px 380px at 100% 
 
 .weeks-bar{display:flex;gap:4px;height:52px;margin:0 0 1.15rem;font-family:var(--font-serif);font-weight:700;font-size:1.15rem}
 .weeks-bar span{display:grid;place-items:center;border-radius:999px;min-width:2rem}
-.w-pres{background:#d3e7f8;color:#10284a}
+.w-pres{background:#ffd2c6;color:#7a2e24}
 .w-semi{background:#f0b429;color:#1b2838}
 .timeline{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
 .tl-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:1.25rem 1.15rem 1.3rem;height:100%}
@@ -384,7 +384,7 @@ html[data-theme="dark"] .bg-azul{background:radial-gradient(800px 380px at 100% 
 .tl-card p{margin:0;color:var(--on-navy-soft);font-size:1.05rem}
 .pill{display:inline-flex;align-items:center;gap:.4rem;font-size:.9rem;font-weight:700;padding:.28rem .7rem;border-radius:999px;margin-top:.85rem}
 .pill svg{width:16px;height:16px}
-.pill.pres{background:#d5e6f5;color:#10284a}
+.pill.pres{background:#ffd2c6;color:#7a2e24}
 .pill.semi{background:#f6c453;color:#1b2838}
 .tl-legend{display:flex;flex-wrap:wrap;gap:1rem 1.25rem;margin-top:1.15rem;font-size:1rem;color:var(--on-navy-soft)}
 .tl-legend span{display:inline-flex;align-items:center;gap:.5rem}
@@ -430,9 +430,9 @@ html[data-theme="dark"] .bg-azul{background:radial-gradient(800px 380px at 100% 
 .checklist fieldset{border:0;margin:0;padding:0;min-inline-size:0}
 .progress-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.55rem;font-weight:700;color:var(--ink)}
 .progress{height:12px;background:var(--icon-bg);border-radius:999px;overflow:hidden;margin-bottom:1rem}
-.progress > span{display:block;height:100%;width:0;background:linear-gradient(90deg,#3d8fd4,#0c4e90);border-radius:inherit}
+.progress > span{display:block;height:100%;width:0;background:linear-gradient(90deg,#e07864,#c45c48);border-radius:inherit}
 html[data-theme="dark"] .progress > span{background:linear-gradient(90deg,#8ebff0,#d7e8fb)}
-html[data-theme="dark"] .check input:checked + .box svg{color:#10284a}
+html[data-theme="dark"] .check input:checked + .box svg{color:#7a2e24}
 .checklist.done .progress > span{background:linear-gradient(90deg,#e9ae2a,#f6c453)}
 .checklist ul{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
 .check{
@@ -469,7 +469,7 @@ html[data-theme="dark"] .check input:checked + .box svg{color:#10284a}
 }
 
 .media-card{max-width:860px;margin-inline:auto;background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}
-.media-card video{width:100%;height:auto;background:#081628}
+.media-card video{width:100%;height:auto;background:#7a2e24}
 .media-card figcaption{padding:1.2rem 1.2rem 1.35rem}
 .media-name{margin:0 0 .25rem;font-family:var(--font-serif);font-size:1.55rem;font-weight:650;color:var(--ink);letter-spacing:-.02em}
 .media-ig{margin:0;font-weight:650}
@@ -552,7 +552,7 @@ body:has(.nav.open) .to-top{opacity:0;pointer-events:none}
     <a class="brand" href="#inicio" aria-label="Rumbo, ir al inicio">
       <!-- Escudo de Uruguay -->
       <span class="brand-seal"><img class="brand-escudo" src="escudo.png" alt="" width="408" height="490"></span>
-      <span class="brand-name">Rumbo<small>Educación Media Básica</small></span>
+      <span class="brand-name">“Rumbo”<small>Educación Media Básica</small></span>
     </a>
     <div class="header-end">
     <button class="menu-toggle" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
@@ -588,8 +588,9 @@ body:has(.nav.open) .to-top{opacity:0;pointer-events:none}
   <div class="container hero-inner">
     <div>
       <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Propuesta de ANEP · DGETP-UTU</span>
-      <h1 id="hero-title">Terminá la Educación Media Básica con <mark>Rumbo</mark></h1>
+      <h1 id="hero-title">Terminá la Educación Media Básica con <mark>“Rumbo”</mark></h1>
       <p class="lead">Una propuesta educativa para jóvenes y adultos que quieren acreditar la Educación Media Básica en 38 semanas y seguir estudiando en UTU o en Secundaria.</p>
+      <p class="hero-note" style="font-family:var(--font-serif);font-size:1.35rem;font-weight:650;color:var(--gold-2);margin-top:1.1rem;">Nunca es tarde para volver a empezar.</p>
       <div class="hero-actions">
         <a class="btn btn-sol" href="http://agenda.utu.edu.uy/" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M9 15l2 2 4-4"/></svg>
@@ -1052,7 +1053,7 @@ body:has(.nav.open) .to-top{opacity:0;pointer-events:none}
     document.documentElement.setAttribute('data-theme',theme);
     themeBtn.setAttribute('aria-label',themeCopy[pref].label);
     themeBtn.setAttribute('title',themeCopy[pref].title);
-    if(themeMeta)themeMeta.setAttribute('content',theme==='dark'?'#0c121c':'#10284a');
+    if(themeMeta)themeMeta.setAttribute('content',theme==='dark'?'#1a0f10':'#c45c48');
     try{localStorage.setItem('rumbo-tema',pref);}catch(e){}
   }
   applyPref(document.documentElement.getAttribute('data-theme-pref')||'auto');
