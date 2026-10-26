@@ -258,16 +258,26 @@ body:has(.nav.open){overflow:hidden}
   font-size:.95rem;font-weight:650;margin-bottom:1rem;color:#fff;
 }
 .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--gold-2);flex:none}
-.hero h1{color:#fff;margin-bottom:.28em;letter-spacing:.06em}
+.hero-intro{text-align:center}
+.hero h1{color:#fff;margin:0 auto .28em;letter-spacing:.06em;text-align:center}
 .hero h1 mark{background:none;color:var(--gold-2)}
 .hero-subtitle{
-  margin:0 0 1.15rem;
-  max-width:38rem;
+  margin:.2rem auto 0;
+  max-width:40rem;
   font-family:var(--font-serif);
   font-size:clamp(1.2rem,2.2vw,1.5rem);
   font-weight:600;
   line-height:1.4;
   color:var(--gold-2);
+  text-align:center;
+}
+.hero-follow{
+  margin:2rem auto 0;
+  max-width:34rem;
+  font-size:clamp(1.08rem,2vw,1.25rem);
+  line-height:1.45;
+  color:var(--on-navy);
+  text-align:center;
 }
 .hero .lead{font-size:1.2rem;line-height:1.55;color:var(--on-navy);max-width:40rem;margin-bottom:0}
 .hero-note{margin:1rem 0 0;font-size:1.0625rem;color:var(--on-navy-soft);max-width:42rem}
@@ -304,6 +314,7 @@ body:has(.nav.open){overflow:hidden}
 }
 @media (min-width:960px){
   .hero-inner{grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);align-items:center;gap:3rem;padding:4rem 0 4.5rem}
+  .hero-intro{grid-column:1 / -1}
 }
 
 section{padding:3.25rem 0}
@@ -595,10 +606,13 @@ body:has(.nav.open) .to-top{opacity:0;pointer-events:none}
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-title">
   <div class="container hero-inner">
-    <div>
+    <div class="hero-intro">
       <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Propuesta de ANEP · DGETP-UTU</span>
       <h1 id="hero-title">RUMBO</h1>
-      <p class="hero-subtitle">“Nunca es tarde para volver a empezar.” Animate a culminar Educación Media Básica en nuestra escuela técnica.</p>
+      <p class="hero-subtitle">“Nunca es tarde para volver a empezar.”</p>
+      <p class="hero-follow">Animate a culminar Educación Media Básica en nuestra escuela técnica.</p>
+    </div>
+    <div>
       <p class="lead">Una propuesta educativa para jóvenes y adultos que quieren acreditar la Educación Media Básica en 38 semanas y seguir estudiando en UTU o en Secundaria.</p>
       <div class="hero-actions">
         <a class="btn btn-sol" href="http://agenda.utu.edu.uy/" target="_blank" rel="noopener">
