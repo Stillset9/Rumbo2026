@@ -488,6 +488,13 @@ html[data-theme="dark"] .check input:checked + .box svg{color:#7a2e24}
   .chips{grid-template-columns:repeat(3,1fr)}
 }
 
+.historia-years{margin:.2rem 0 0;font-family:var(--font-serif);font-weight:650;font-size:1.2rem;color:var(--kicker)}
+.historia-copy{max-width:46rem}
+.historia-copy h3{margin-top:1.75rem}
+.historia-figure{margin:2.25rem 0 0;max-width:860px}
+.historia-figure img{width:100%;height:auto;display:block;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.historia-figure figcaption{margin:.75rem 0 0;color:var(--muted);font-size:1rem}
+#historia.bg-celeste + #cifras{box-shadow:inset 0 1px 0 var(--line)}
 .media-card{max-width:860px;margin-inline:auto;background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}
 .media-card video{width:100%;height:auto;background:#7a2e24}
 .media-card figcaption{padding:1.2rem 1.2rem 1.35rem}
@@ -582,6 +589,7 @@ body:has(.nav.open) .to-top{opacity:0;pointer-events:none}
     <nav class="nav" id="nav" aria-label="Navegación principal">
       <ul>
         <li><a href="#que-es">Qué es</a></li>
+        <li><a href="#historia">Historia</a></li>
         <li><a href="#componentes">Componentes</a></li>
         <li><a href="#quienes">Quiénes</a></li>
         <li><a href="#modulos">Módulos</a></li>
@@ -657,6 +665,31 @@ body:has(.nav.open) .to-top{opacity:0;pointer-events:none}
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg><span>Contribuir a la construcción del sentido crítico social, la autonomía y la ciudadanía responsable.</span></li>
       </ul>
     </aside>
+  </div>
+</section>
+
+<!-- HISTORIA -->
+<section class="bg-celeste" id="historia" aria-labelledby="historia-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Historia</span>
+      <h2 id="historia-title">Historia del Plan RUMBO – UTU</h2>
+      <p class="historia-years">2010–2026 | 16 años brindando oportunidades educativas</p>
+    </div>
+    <div class="historia-copy">
+      <p>El Plan RUMBO nació en Uruguay en el año 2010, impulsado por la Universidad del Trabajo del Uruguay (UTU), con el objetivo de brindar una nueva oportunidad educativa a jóvenes y adultos que, por diferentes motivos, no habían podido finalizar la Educación Media Básica.</p>
+      <p>El programa surgió a partir de la experiencia de Acreditación de Saberes, que reconocía los conocimientos adquiridos a través del trabajo y de la vida. En sus comienzos funcionó en 10 escuelas técnicas y, con el paso de los años, fue creciendo y llegando a diferentes localidades del país.</p>
+      <p>Una de sus principales características es que permite culminar el Ciclo Básico en un año, mediante tres módulos que combinan clases presenciales y semipresenciales. De esta manera, facilita el estudio a personas que también tienen responsabilidades laborales y familiares.</p>
+      <p>En 2013 comenzó a extenderse al medio rural, acercando nuevas oportunidades educativas a más personas.</p>
+      <h3>El Plan RUMBO en la actualidad</h3>
+      <p>En 2026, el Plan RUMBO cumple 16 años de trayectoria. Continúa ofreciendo oportunidades para finalizar la Educación Media Básica y seguir estudiando. Además, UTU está trabajando en la revisión y actualización del programa para responder mejor a las necesidades de sus estudiantes.</p>
+      <p>Más allá de los conocimientos, RUMBO representa una oportunidad para recuperar la confianza, compartir experiencias, superar dificultades y demostrar que nunca es tarde para aprender.</p>
+      <p>Porque RUMBO no es solamente terminar un ciclo educativo: es volver a creer en uno mismo, descubrir nuevas capacidades y abrir las puertas a un futuro con más oportunidades.</p>
+    </div>
+    <figure class="historia-figure">
+      <img src="media/historia-rumbo.jpg" alt="Clase de Rumbo en un aula de UTU: estudiantes con computadoras y un docente frente al pizarrón." width="755" height="390">
+      <figcaption>Clase de Rumbo en un aula de UTU.</figcaption>
+    </figure>
   </div>
 </section>
 
