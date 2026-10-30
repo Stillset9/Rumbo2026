@@ -644,59 +644,77 @@ body.gal-lock{overflow:hidden}
 }
 @media (forced-colors:active){.gal,.gal-nav,.gal-thumb{border:1px solid CanvasText}}
 
-/* Efecto tornasolado: capas decorativas que cambian de color lentamente (GPU: transform + hue-rotate) */
+/* Efecto tornasolado: capas decorativas que cambian de color (GPU: transform + hue-rotate) */
 @keyframes tornasol-giro{to{transform:rotate(1turn)}}
-@keyframes tornasol-hue{0%{filter:hue-rotate(-40deg)}50%{filter:hue-rotate(40deg)}100%{filter:hue-rotate(-40deg)}}
+@keyframes tornasol-hue{to{filter:hue-rotate(360deg)}}
 @keyframes tornasol-desliz{0%{background-position:0% 50%}100%{background-position:100% 50%}}
 .hero::after{
   content:"";position:absolute;z-index:0;pointer-events:none;
   left:50%;top:50%;width:max(160vmax,1600px);aspect-ratio:1;margin:calc(max(160vmax,1600px) / -2) 0 0 calc(max(160vmax,1600px) / -2);
   background:
-    radial-gradient(closest-side at 30% 32%,rgba(96,56,160,.55),transparent),
-    radial-gradient(closest-side at 70% 30%,rgba(28,112,128,.45),transparent),
-    radial-gradient(closest-side at 68% 70%,rgba(166,60,110,.5),transparent),
-    radial-gradient(closest-side at 32% 68%,rgba(70,60,150,.4),transparent);
+    radial-gradient(closest-side at 30% 32%,rgba(110,40,200,.78),transparent),
+    radial-gradient(closest-side at 70% 30%,rgba(0,120,150,.7),transparent),
+    radial-gradient(closest-side at 68% 70%,rgba(200,30,120,.72),transparent),
+    radial-gradient(closest-side at 32% 68%,rgba(40,70,200,.66),transparent),
+    radial-gradient(closest-side at 50% 50%,rgba(150,40,170,.5),transparent),
+    rgba(30,8,30,.22);
   will-change:transform,filter;
-  animation:tornasol-giro 30s linear infinite,tornasol-hue 24s ease-in-out infinite;
+  animation:tornasol-giro 12s linear infinite,tornasol-hue 8s linear infinite;
 }
 .site-header::before{
   content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:linear-gradient(100deg,rgba(96,56,160,.42),rgba(28,112,128,.32) 35%,rgba(166,60,110,.38) 68%,rgba(96,56,160,.42));
+  background:linear-gradient(100deg,rgba(110,40,200,.62),rgba(0,120,150,.55) 35%,rgba(200,30,120,.6) 68%,rgba(110,40,200,.62));
   will-change:filter;
-  animation:tornasol-hue 24s ease-in-out infinite;
+  animation:tornasol-hue 8s linear infinite;
 }
 .site-header::after,footer::before{
-  content:"";position:absolute;left:0;right:0;height:3px;pointer-events:none;
-  background:linear-gradient(90deg,#f6c453,#ef8fbf,#7fd3df,#b49cf0,#f6c453,#ef8fbf,#7fd3df);
+  content:"";position:absolute;left:0;right:0;height:4px;pointer-events:none;
+  background:linear-gradient(90deg,#ffc83d,#ff5fb0,#3fd8f0,#9b6bff,#ffc83d,#ff5fb0,#3fd8f0);
   background-size:300% 100%;
-  animation:tornasol-desliz 18s linear infinite alternate;
+  animation:tornasol-desliz 5s linear infinite alternate;
 }
 .site-header::after{bottom:-1px}
-footer{position:relative}
+footer{position:relative;isolation:isolate}
 footer::before{top:0}
+footer::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(120deg,rgba(110,40,200,.35),rgba(0,110,140,.3) 50%,rgba(190,30,110,.32));
+  will-change:filter;animation:tornasol-hue 10s linear infinite;
+}
 @supports ((-webkit-background-clip:text) or (background-clip:text)){
   .hero h1,.brand-name{
-    background-image:linear-gradient(100deg,#ffffff 0%,#ffe0f1 18%,#d6f3ff 36%,#e8dcff 54%,#fff1c8 72%,#ffe0f1 86%,#ffffff 100%);
+    background-image:linear-gradient(100deg,#ffffff 0%,#ffb3dd 16%,#9feaff 33%,#cdb6ff 50%,#ffe17a 66%,#ffb3dd 83%,#ffffff 100%);
     background-size:300% 100%;
     -webkit-background-clip:text;background-clip:text;
     -webkit-text-fill-color:transparent;color:#fff;
-    animation:tornasol-desliz 20s ease-in-out infinite alternate;
+    animation:tornasol-desliz 6s ease-in-out infinite alternate;
   }
   .brand-name small{-webkit-text-fill-color:var(--on-navy-soft)}
 }
-.kicker::before,.bg-azul .kicker::before{
-  background:linear-gradient(90deg,var(--gold),#e77fb2,#4fb8c8,#9b7fe0,var(--gold));
+.kicker::before,.bg-azul .kicker::before,.kicker + h2::after{
+  background:linear-gradient(90deg,var(--gold),#ff4fa3,#1fb5cc,#8a5cf0,var(--gold));
   background-size:300% 100%;
-  animation:tornasol-desliz 16s linear infinite alternate;
+  animation:tornasol-desliz 5s linear infinite alternate;
 }
+.kicker + h2::after{content:"";display:block;width:3.5rem;height:4px;border-radius:99px;margin-top:.4em}
+/* Marco tornasolado de la galería: anillo cónico que gira detrás del carrusel */
+.gal-frame{position:relative;isolation:isolate;overflow:hidden;padding:3px;border-radius:25px;box-shadow:var(--shadow)}
+.gal-frame::before{
+  content:"";position:absolute;z-index:-1;left:50%;top:50%;width:200%;aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none;
+  background:conic-gradient(#ffc83d,#ff4fa3,#1fb5cc,#8a5cf0,#ffc83d);
+  will-change:transform;animation:tornasol-anillo 8s linear infinite;
+}
+@keyframes tornasol-anillo{to{transform:translate(-50%,-50%) rotate(1turn)}}
+.gal-frame > .gal{border-color:transparent;box-shadow:none}
+.gal-frame > .gal:focus-visible{outline-offset:-4px}
 @media (forced-colors:active){
-  .hero::after,.site-header::before{display:none}
+  .hero::after,.site-header::before,footer::after,.gal-frame::before{display:none}
   .hero h1,.brand-name{-webkit-text-fill-color:currentColor;background:none}
 }
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .hero::after,.site-header::before,.site-header::after,footer::before,.kicker::before,.hero h1,.brand-name{animation:none!important;will-change:auto}
+  .hero::after,.site-header::before,.site-header::after,footer::before,footer::after,.kicker::before,.kicker + h2::after,.gal-frame::before,.hero h1,.brand-name{animation:none!important;will-change:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
 @media (forced-colors:active){
@@ -1160,7 +1178,7 @@ footer::before{top:0}
         <p class="gallery-lead">Presentamos el registro fotográfico de <strong>Rumbo de la Escuela Técnica Colón y su Anexo Unidad 5</strong>. Las imágenes recorren la intervención artística <em>«Un océano de esperanza»</em>, realizada en 2025 por estudiantes de Rumbo RE3, que funciona en el I.N.R. 5: medusas de papel que iluminan pasillos y salones, peces de origami, mensajes escritos a mano y los libros <em>«La mochila invisible»</em> y <em>«De la cárcel a Rumbo»</em>.</p>
         <p class="gallery-hint muted">Recorré las fotos con las flechas, deslizando el dedo o tocando una miniatura. Para verlas en grande, tocá la imagen.</p>
       </div>
-      <div class="gal" role="region" aria-roledescription="carrusel" aria-labelledby="galeria-title" tabindex="0" data-gallery>
+      <div class="gal-frame"><div class="gal" role="region" aria-roledescription="carrusel" aria-labelledby="galeria-title" tabindex="0" data-gallery>
         <div class="gal-stage">
           <div class="gal-slides" aria-live="polite" aria-atomic="false">
           <div class="gal-slide" role="group" aria-roledescription="diapositiva" aria-label="Foto 1 de 19">
@@ -1247,7 +1265,7 @@ footer::before{top:0}
         <li><button type="button" class="gal-thumb" data-index="17" aria-label="Ver foto 18 de 19"><img src="media/galeria/mini-18.jpg" alt="" width="135" height="240" loading="lazy" decoding="async"></button></li>
         <li><button type="button" class="gal-thumb" data-index="18" aria-label="Ver foto 19 de 19"><img src="media/galeria/mini-19.jpg" alt="" width="240" height="135" loading="lazy" decoding="async"></button></li>
         </ul>
-      </div>
+      </div></div>
       <p class="gallery-credit">Fotos: Rumbo – Escuela Técnica Colón y Anexo Unidad 5.</p>
     </div>
   </div>
