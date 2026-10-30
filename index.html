@@ -644,8 +644,59 @@ body.gal-lock{overflow:hidden}
 }
 @media (forced-colors:active){.gal,.gal-nav,.gal-thumb{border:1px solid CanvasText}}
 
+/* Efecto tornasolado: capas decorativas que cambian de color lentamente (GPU: transform + hue-rotate) */
+@keyframes tornasol-giro{to{transform:rotate(1turn)}}
+@keyframes tornasol-hue{0%{filter:hue-rotate(-40deg)}50%{filter:hue-rotate(40deg)}100%{filter:hue-rotate(-40deg)}}
+@keyframes tornasol-desliz{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+.hero::after{
+  content:"";position:absolute;z-index:0;pointer-events:none;
+  left:50%;top:50%;width:max(160vmax,1600px);aspect-ratio:1;margin:calc(max(160vmax,1600px) / -2) 0 0 calc(max(160vmax,1600px) / -2);
+  background:
+    radial-gradient(closest-side at 30% 32%,rgba(96,56,160,.55),transparent),
+    radial-gradient(closest-side at 70% 30%,rgba(28,112,128,.45),transparent),
+    radial-gradient(closest-side at 68% 70%,rgba(166,60,110,.5),transparent),
+    radial-gradient(closest-side at 32% 68%,rgba(70,60,150,.4),transparent);
+  will-change:transform,filter;
+  animation:tornasol-giro 30s linear infinite,tornasol-hue 24s ease-in-out infinite;
+}
+.site-header::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(100deg,rgba(96,56,160,.42),rgba(28,112,128,.32) 35%,rgba(166,60,110,.38) 68%,rgba(96,56,160,.42));
+  will-change:filter;
+  animation:tornasol-hue 24s ease-in-out infinite;
+}
+.site-header::after,footer::before{
+  content:"";position:absolute;left:0;right:0;height:3px;pointer-events:none;
+  background:linear-gradient(90deg,#f6c453,#ef8fbf,#7fd3df,#b49cf0,#f6c453,#ef8fbf,#7fd3df);
+  background-size:300% 100%;
+  animation:tornasol-desliz 18s linear infinite alternate;
+}
+.site-header::after{bottom:-1px}
+footer{position:relative}
+footer::before{top:0}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .hero h1,.brand-name{
+    background-image:linear-gradient(100deg,#ffffff 0%,#ffe0f1 18%,#d6f3ff 36%,#e8dcff 54%,#fff1c8 72%,#ffe0f1 86%,#ffffff 100%);
+    background-size:300% 100%;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:#fff;
+    animation:tornasol-desliz 20s ease-in-out infinite alternate;
+  }
+  .brand-name small{-webkit-text-fill-color:var(--on-navy-soft)}
+}
+.kicker::before,.bg-azul .kicker::before{
+  background:linear-gradient(90deg,var(--gold),#e77fb2,#4fb8c8,#9b7fe0,var(--gold));
+  background-size:300% 100%;
+  animation:tornasol-desliz 16s linear infinite alternate;
+}
+@media (forced-colors:active){
+  .hero::after,.site-header::before{display:none}
+  .hero h1,.brand-name{-webkit-text-fill-color:currentColor;background:none}
+}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
+  .hero::after,.site-header::before,.site-header::after,footer::before,.kicker::before,.hero h1,.brand-name{animation:none!important;will-change:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
 }
 @media (forced-colors:active){
